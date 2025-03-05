@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Rating from '@mui/material/Rating';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,12 +17,13 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
+      <h1 className='text-3xl'>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
+        <p className='bg-red-500'>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
