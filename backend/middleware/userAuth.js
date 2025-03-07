@@ -2,7 +2,11 @@ import jwt from "jsonwebtoken"
 import User  from "../model/user.model.js"
 
 const userAuth = async(req, res, next) => {
-  const token = req.cookies.jwt || req.header("Authorization").split(" ")[1]
+  let token = req.cookies.jwt; 
+
+  if (!token && req.headers.authorization?.startsWith("Bearer ")) {
+    token = req.headers.authorization.split(" ")[1]; 
+  }
 
   if(!token) {
     return res.status(400).json({error: "Unauthorized - No token provided"})
@@ -10,7 +14,8 @@ const userAuth = async(req, res, next) => {
 
   try {
     const decodedToken = jwt.verify(token , process.env.JWT_SECRET)
-    const user = await User.findById(decodedToken?.userId).select("-password")
+    
+    const user = await User.findById(decodedToken?.id).select("-password")
 
     if(!user){
       return res.status(400).json({error: "User not found"})

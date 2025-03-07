@@ -1,36 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import Rating from '@mui/material/Rating';
+
+import Navbar from './componenets/Navbar'
+import Footer from './componenets/Footer'
+import Home from './pages/Home'
+import Create from './pages/Create'
+import Signin from './pages/Signin'
+import Signup from './pages/Signup'
+import Movie from './pages/Movie'
+
+import { authActions } from "./store/auth"
+import { useDispatch, useSelector } from "react-redux"
+import {Routes, Route} from "react-router-dom"
+import { useEffect } from "react"
+import Cookies from "js-cookie";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch()
+  const role = useSelector((state) => state.auth.role)
+
+  useEffect(() => {
+    const id = Cookies.get("id");
+    const token = Cookies.get("jwt");
+    const role = Cookies.get("role");
+
+    if (id && token && role) {
+      dispatch(authActions.login());
+      dispatch(authActions.changeRole(role));
+    }
+  }, [dispatch]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
-      <h1 className='text-3xl'>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p className='bg-red-500'>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <Navbar />
+      <Routes>
+        <Route exact path='/' element={<Home />} />
+        <Route path='/movie/:id' element={<Movie />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/signin' element={<Signin />} />
+        {
+          role === "admin" ?
+            <>
+            <Route path='/create' element={<Create />} />
+            <Route path='/update/:id' element={<Create />} />
+            </>
+          : null
+        }
+      </Routes>
+      <Footer />
+    </div>
   )
 }
 
