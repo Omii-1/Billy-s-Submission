@@ -7,25 +7,26 @@ const generateTokenSetCookies = (userId, role, res) => {
   })
 
   const isProduction = process.env.NODE_ENV === "PROD";
+  const samesite = process.env.NODE_ENV === "PROD" ? "none" : "lax";
 
   res.cookie("jwt", token, {
     maxAge: 15 * 24 * 60 * 60 * 1000,
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: samesite,
     secure: isProduction
   })
   
   res.cookie("role", role, {
     maxAge: 15 * 24 * 60 * 60 * 1000,
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: samesite,
     secure: isProduction
   })
 
   res.cookie("id", userId, {
     maxAge: 15 * 24 * 60 * 60 * 1000,
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: samesite,
     secure: isProduction
   })
 }

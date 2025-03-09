@@ -4,6 +4,8 @@ import User  from "../model/user.model.js"
 const userAuth = async(req, res, next) => {
   let token = req.cookies.jwt; 
 
+  console.log("Received Token:", token); // 🔍 Log to check the received token
+
   if (!token && req.headers.authorization?.startsWith("Bearer ")) {
     token = req.headers.authorization.split(" ")[1]; 
   }
