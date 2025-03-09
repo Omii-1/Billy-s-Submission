@@ -107,7 +107,30 @@ npm run dev
 ---
 
 ## 📸 Screenshots
-(Add screenshots of your application here, such as home page, admin dashboard, search functionality, etc.)
+### Homepage
+![Homepage](https://github.com/Omii-1/Billy-s-Submission/blob/main/assest/home%20page.png?raw=true)
+
+### Login
+![Login](https://github.com/Omii-1/Billy-s-Submission/blob/main/assest/login.png?raw=true)
+
+### Signup
+![Signup](https://github.com/Omii-1/Billy-s-Submission/blob/main/assest/signup.png?raw=true)
+
+### Movie page ( User )
+![MoviePage](https://github.com/Omii-1/Billy-s-Submission/blob/main/assest/movie%20page%20user.png?raw=true)
+
+### Signup
+![Homepage]()
+
+### Signup
+![Homepage]()
+
+### Signup
+![Homepage]()
+
+### Signup
+![Homepage]()
+
 
 ---
 
