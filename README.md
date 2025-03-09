@@ -3,9 +3,9 @@
 ## 🚀 Live Demo
 [Live Application](https://billy-s-frontend.vercel.app/)
 
-Admin Credentials for Testing
-Email: admin@gmail.com
-Password: 123456
+#### Admin Credentials for Testing:
+- Email: admin@gmail.com
+- Password: 123456
 
 ## 📌 Project Overview
 This is a full-stack MERN (MongoDB, Express.js, React.js, Node.js) application that allows users to browse, search, and sort movies from IMDb's Top 250 Movies. Admins can add, edit, and delete movies.
