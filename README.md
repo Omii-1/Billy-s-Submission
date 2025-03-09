@@ -117,20 +117,16 @@ npm run dev
 ![Signup](https://github.com/Omii-1/Billy-s-Submission/blob/main/assest/signup.png?raw=true)
 
 ### Movie page ( User )
-![MoviePage](https://github.com/Omii-1/Billy-s-Submission/blob/main/assest/movie%20page%20user.png?raw=true)
+![MoviePageUser](https://github.com/Omii-1/Billy-s-Submission/blob/main/assest/movie%20page%20user.png?raw=true)
 
-### Signup
-![Homepage]()
+### Movie page ( Admin )
+![MoviePageAdmin](https://github.com/Omii-1/Billy-s-Submission/blob/main/assest/movie%20page%20admin.png?raw=true)
 
-### Signup
-![Homepage]()
+### Create Movie ( Admin )
+![CreateMovie](https://github.com/Omii-1/Billy-s-Submission/blob/main/assest/create%20page%20admin.png?raw=true)
 
-### Signup
-![Homepage]()
-
-### Signup
-![Homepage]()
-
+### Update and Delete Movie ( Admin )
+![UpdateDeleteMovie](https://github.com/Omii-1/Billy-s-Submission/blob/main/assest/update%20and%20delete.png?raw=true)
 
 ---
 
