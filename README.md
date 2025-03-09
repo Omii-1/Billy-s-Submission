@@ -123,11 +123,6 @@ npm run dev
 
 ---
 
-## 📝 License
-This project is licensed under the MIT License.
-
----
-
 ## 📬 Contact
 For any issues or inquiries, feel free to reach out!
 
