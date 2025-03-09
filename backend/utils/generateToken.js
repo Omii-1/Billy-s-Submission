@@ -6,25 +6,27 @@ const generateTokenSetCookies = (userId, role, res) => {
     expiresIn: "15d"
   })
 
+  const isProduction = process.env.NODE_ENV === "PROD";
+
   res.cookie("jwt", token, {
     maxAge: 15 * 24 * 60 * 60 * 1000,
-    httpOnly: false,
-    sameSite: "None",
-    secure: process.env.NODE_ENV !== "development"
+    httpOnly: true,
+    sameSite: "lax",
+    secure: isProduction
   })
   
   res.cookie("role", role, {
     maxAge: 15 * 24 * 60 * 60 * 1000,
-    httpOnly: false,
-    sameSite: "None",
-    secure: process.env.NODE_ENV !== "development"
+    httpOnly: true,
+    sameSite: "lax",
+    secure: isProduction
   })
 
   res.cookie("id", userId, {
     maxAge: 15 * 24 * 60 * 60 * 1000,
-    httpOnly: false,
-    sameSite: "None",
-    secure: process.env.NODE_ENV !== "development"
+    httpOnly: true,
+    sameSite: "lax",
+    secure: isProduction
   })
 }
 

@@ -1,14 +1,34 @@
 import express from "express";
 import bcrypt from "bcryptjs";
+import zod from "zod";
 
 import User from "../model/user.model.js";
 import generateTokenSetCookies from "../utils/generateToken.js";
 
 const router = express.Router();
 
+const signUpBody = zod.object({
+  fullName: zod.string().min(4, "Name must be at least 4 chars"),
+  email: zod.string().email("Invalid email"),
+  password: zod.string().min(6, "Password must be at least 6 chars"),
+}).strict();
+
+const signInBody = zod.object({
+  email: zod.string().email("Invalid email"),
+  password: zod.string().min(6, "Password must be at least 6 chars"),
+}).strict();
+
 // signup
 router.post("/signup", async (req, res) => {
   try {
+    const validation = signUpBody.safeParse(req.body);
+
+    if(!validation.success){
+      return res.status(400).json({
+        error: validation.error.format()
+      })
+    }
+    
     const {fullName, email, password} = req.body;
 
     const user = await User.findOne({email})
@@ -31,8 +51,9 @@ router.post("/signup", async (req, res) => {
       await newUser.save()
 
       return res.status(201).json({
-        msg: "User created successfully",
+        message: "User created successfully",
         _id: newUser._id,
+        role: newUser.role
       })
     } else {
       return res.status(400).json({error: "Invalid user data"})
@@ -48,6 +69,15 @@ router.post("/signin", async(req, res) => {
   try {
     const {email, password} = req.body;
 
+    const validation = signInBody.safeParse({email, password});
+
+    if(!validation.success){
+      return res.status(400).json({
+        error: validation.error.format()
+      })
+    }
+
+
     const user = await User.findOne({email});
 
     const isPasswordCorrect = await bcrypt.compare(password, user?.password || "")
@@ -60,7 +90,8 @@ router.post("/signin", async(req, res) => {
 
     return res.status(201).json({
       message: "Login successfully",
-      _id: user._id
+      _id: user._id,
+      role: user.role,
     })
   } catch (error) {
     console.log("Error in login controller", error.message);
@@ -98,6 +129,25 @@ router.post("/logout", (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 });
+
+// checking the cookies
+router.get("/check", (req, res) => {
+  const { jwt, role, id } = req.cookies;
+
+  if(!jwt || !role || !id){
+    return res.status(401).json({
+      isAuthenticated: false,
+      error: "User is not authenticated"
+    })
+  }
+
+  return res.status(201).json({
+    message: "User is authenticated",
+    isAuthenticated: true,
+    id,
+    role
+  })
+})
 
 
 export default router;
