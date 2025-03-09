@@ -133,4 +133,5 @@ For any issues or inquiries, feel free to reach out!
 💻 **Developer:** Om Juvatkar  
 📧 **Email:** [omjuvatkar123@gmail.com](mailto:omjuvatkar123@gmail.com)  
 🔗 **GitHub:** [Omii-1](https://github.com/Omii-1)
+🔗 **Linkedin:** [Om Juvatkar](https://www.linkedin.com/in/om-juvatkar)
 
